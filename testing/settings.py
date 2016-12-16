@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shortener',
+    'analytics',
+    'django_hosts',
 ]
 
 MIDDLEWARE = [
+    'django_hosts.middleware.HostsRequestMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_hosts.middleware.HostsResponseMiddleware',
 ]
 
 ROOT_URLCONF = 'testing.urls'
@@ -127,3 +131,8 @@ STATIC_URL = '/static/'
 
 SHORTCODE_MAX = 15
 SHORTCODE_MIN = 6
+
+ROOT_HOSTCONF = 'testing.hosts'
+DEFAULT_HOST = 'www'
+DEFAULT_REDIRECT_URL = "iyed.tn:8000"
+PARENT_HOST = DEFAULT_REDIRECT_URL
